@@ -321,7 +321,29 @@
 		}
 	}
 
-	@media screen and (max-width: 1630px) {
+	@media screen and (max-width: 1600px) {
+		.cols {
+			margin-left: 0;
+		}
+	}
+
+	@media screen and (max-width: 1300px) {
+		.divider {
+			flex-direction: column-reverse;
+			padding-left: 0;
+		}
+
+		.preview {
+			width: 100%;
+		}
+
+		.divtitle {
+			text-align: center;
+			padding: 10px 40px;
+		}
+	}
+
+	@media screen and (max-width: 1300px) {
 		.right {
 			margin-right: 0;
 			text-align: center;

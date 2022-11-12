@@ -84,6 +84,12 @@
 		margin-top: 0;
 	}
 
+	@media screen and (max-width: 1300px) {
+		.container {
+			width: 70%;
+		}
+	}
+
 	@media screen and (max-width: 780px) {
 		.container {
 			width: 90%;
