@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,700;1,400&display=swap');
+
+@font-face {
+	font-family: 'Hey Haters';
+	src: url('/hey_haters-webfont.woff2');
+}
+
+:root {
+	box-sizing: border-box;
+	overflow-x: hidden;
+}
+
+.hilight {
+	color: #ead984;
+}
+
+@media screen and (max-width: 1430px) {
+	:root {
+		background-color: #80311c;
+	}
+}
