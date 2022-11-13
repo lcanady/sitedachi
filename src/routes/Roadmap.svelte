@@ -5,6 +5,7 @@
 <h2>A (Kind of) <span class="hilight">Roadmap!</span></h2>
 <div class="bubbles">
 	<img src="/line.png" alt="" class="line" />
+
 	<Bubble done={true}>
 		<h3 class="header">Genesis Collection</h3>
 		<p class="body">
@@ -50,9 +51,9 @@
 		position: absolute;
 		top: 0;
 		left: 50%;
-
 		z-index: 10;
 	}
+
 	.bubbles {
 		display: flex;
 		flex-direction: column;
@@ -76,5 +77,19 @@
 		font-size: 20px;
 		margin-top: 0;
 		color: #40180e;
+	}
+
+	@media screen and (max-width: 760px) {
+		.bubbles {
+			height: 2000px;
+		}
+
+		.line {
+			top: 300px;
+		}
+
+		.body {
+			padding: 0 40px;
+		}
 	}
 </style>

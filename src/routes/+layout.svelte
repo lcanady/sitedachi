@@ -296,7 +296,7 @@
 		}
 
 		.content {
-			position: absolute;
+			position: relative;
 			margin-top: 0;
 		}
 	}

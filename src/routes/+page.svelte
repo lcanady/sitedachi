@@ -1,12 +1,12 @@
 <script>
-	import { provider, magic, NAGIC_API, address, loading } from '../store';
+	import { provider, magic, NAGIC_API, address } from '../store';
 	import { Magic } from 'magic-sdk';
 	import { ConnectExtension } from '@magic-ext/connect';
 	import { ethers } from 'ethers';
 	import { onMount } from 'svelte';
-	import Bubble from './Bubble.svelte';
 	import Roadmap from './Roadmap.svelte';
 	import ConnectButton from './ConnectButton.svelte';
+	import Divider from './Divider.svelte';
 
 	onMount(() => {
 		$magic = new Magic(NAGIC_API, {
@@ -40,13 +40,9 @@
 		<p class="title-mobile">
 			<span class="hilight">000</span>/222 <span class="hilight">GENESIS</span> Dachiballs
 		</p>
-		<button
-			style="margin: 20px 0"
-			on:click={async () => $provider && ($address = (await $provider?.listAccounts())[0])}
-			class="mint-mobile"
-			>{$address ? 'Mint a Dachiball!' : 'Connect Wallet!'}
-			<img src="shine.png" alt="" class="shine" /></button
-		>
+		<div class="mobile">
+			<ConnectButton />
+		</div>
 		<p class="title">
 			<span class="hilight">000</span>/222 <span class="hilight">GENESIS</span> Dachiballs are ready
 			to be collected! Get yours
@@ -62,31 +58,31 @@
 			an OG *dachi holder
 			<span class="hilight">today!</span>
 		</p>
-		<p />
-		<button
-			on:click={async () => $provider && ($address = (await $provider?.listAccounts())[0])}
-			class="mint"
-			><img src="/skulls.png" alt="" width="50px" />&nbsp;{$address
-				? 'Mint a Dachiball!'
-				: 'Connect Wallet!'}
-			<img src="shine.png" alt="" class="shine" /></button
-		>
+		<div class="desktop">
+			<ConnectButton />
+		</div>
 	</div>
 </div>
 <div class="images" />
 
 <Roadmap />
-<div class="divider">
-	<div class="divleft">
-		<p class="divtitle">Run with the Horde, mint your Dachiball today!.</p>
-
-		<p class="divsubtitle" />
-		<ConnectButton />
-	</div>
-	<img src="/preview.gif" class="preview" alt="Preview" width="545" />
-</div>
+<Divider />
 
 <style>
+	.desktop {
+		display: block;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 60px;
+	}
+	.mobile {
+		display: none;
+
+		height: 100%;
+		width: 100%;
+		justify-content: center;
+	}
 	.bones {
 		position: absolute;
 		top: 1900px;
@@ -219,87 +215,10 @@
 		background: url(/zombies.png);
 	}
 
-	.mint {
-		padding: 20px 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: #c8513a;
-		outline: none;
-		border: none;
-		height: 100px;
-		min-width: 400px;
-		margin-bottom: 100px;
-		font-family: 'hey haters';
-		color: #ffffeb;
-		font-size: 36px;
-		border-radius: 50px;
-		cursor: pointer;
-		position: relative;
-	}
-
-	.mint-mobile {
-		background-color: #c8513a;
-		outline: none;
-		border: none;
-		height: 56px;
-		width: 100%;
-		font-family: 'hey haters';
-		color: #ffffeb;
-		font-size: 24px;
-		border-radius: 50px;
-		cursor: pointer;
-		display: none;
-	}
-
-	.shine {
-		position: absolute;
-		right: 10px;
-		top: 15px;
-		opacity: 0.5;
-	}
-
 	.ball {
 		margin-top: 45px;
 		width: 450px;
 		height: 450px;
-	}
-
-	.divider {
-		margin-top: 250px;
-		display: flex;
-		background: #ffffeb;
-		padding-left: 260px;
-		position: relative;
-	}
-
-	.divleft {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-right: 60px;
-	}
-
-	.divtitle {
-		font-size: 54px;
-		font-family: 'hey haters';
-
-		color: #40180e;
-		margin-bottom: 20px;
-	}
-
-	.divsubtitle {
-		font-size: 24px;
-		font-family: 'epilogue';
-		color: #40180e;
-		margin-bottom: 40px;
-		font-weight: bold;
-		line-height: 34px;
-	}
-
-	.preview {
-		margin-left: auto;
-		object-fit: cover;
 	}
 
 	.skull {
@@ -325,28 +244,24 @@
 		.cols {
 			margin-left: 0;
 		}
-	}
 
-	@media screen and (max-width: 1300px) {
-		.divider {
-			flex-direction: column-reverse;
-			padding-left: 0;
-		}
-
-		.preview {
-			width: 100%;
-		}
-
-		.divtitle {
-			text-align: center;
-			padding: 10px 40px;
-		}
-	}
-
-	@media screen and (max-width: 1300px) {
 		.right {
+			padding-right: 40px;
+		}
+	}
+
+	@media screen and (max-width: 1300px) {
+		.desktop {
+			display: flex;
+		}
+
+		.right {
+			display: flex;
+			padding: 0;
+			flex-direction: column;
 			margin-right: 0;
 			text-align: center;
+			justify-content: center;
 		}
 
 		.left {
@@ -361,6 +276,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			justify-content: center;
 		}
 		.images {
 			display: none;
@@ -375,10 +291,65 @@
 	}
 
 	@media screen and (max-width: 760px) {
+		.bloodsplatters2 {
+			display: none;
+		}
+
+		.bloodsplatters3 {
+			display: none;
+		}
+
+		.bloodsplatters4 {
+			display: none;
+		}
+
+		.bloodsplatters5 {
+			display: none;
+		}
+
+		.bloodsplatters6 {
+			display: none;
+		}
+
+		.bloodsplatters7 {
+			display: none;
+		}
+
+		.bones {
+			display: none;
+		}
+
+		.bones2 {
+			display: none;
+		}
+
+		.bones3 {
+			display: none;
+		}
+
+		.bones4 {
+			display: none;
+		}
+
+		.bones5 {
+			display: none;
+		}
+
+		.bones6 {
+			display: none;
+		}
+
 		.right {
 			margin-right: 0px;
 			padding: 0 32px;
-			margin-top: -30px;
+		}
+
+		.mobile {
+			display: flex;
+		}
+
+		.desktop {
+			display: none;
 		}
 
 		.left {
@@ -391,26 +362,18 @@
 		}
 
 		.title-mobile {
+			margin-top: 42px;
 			display: block;
 			line-height: 3.5rem;
 		}
 
-		.mint-mobile {
-			display: block;
+		.bloodsplatters7 {
+			display: none;
 		}
 
 		.cols {
-			left: 0;
 			padding: 0;
-		}
-
-		.mint {
-			width: 80%;
-			display: none;
-		}
-
-		.shine {
-			display: none;
+			margin-top: 40px;
 		}
 
 		.title {
@@ -421,9 +384,24 @@
 			margin-top: 0;
 		}
 	}
-	@media screen and (max-width: 415px) {
-		.cols {
-			background-color: #6c1d08;
+	@media screen and (max-width: 460px) {
+		.bloodsplatters2 {
+			display: none;
+		}
+
+		.right {
+			margin: 0;
+			padding: 0 20px;
+		}
+
+		.title-mobile {
+			font-size: 38px;
+			margin-top: -30px;
+		}
+
+		.ball {
+			width: 80%;
+			height: auto;
 		}
 	}
 </style>

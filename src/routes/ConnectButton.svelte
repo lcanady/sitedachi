@@ -8,7 +8,9 @@
 	on:click={async () => $provider && ($address = (await $provider?.listAccounts())[0])}
 	class="mint"
 	style="margin-bottom: 20px; max-width: 600px"
-	><img src="/skulls.png" alt="" width="50px" />&nbsp;{$address ? mintMsg : connectMsg}
+	><img src="/skulls.png" alt="" class="skull" width="50px" />&nbsp;{$address
+		? mintMsg
+		: connectMsg}
 	<img src="shine.png" alt="" class="shine" /></button
 >
 
@@ -37,5 +39,17 @@
 		right: 10px;
 		top: 15px;
 		opacity: 0.5;
+	}
+
+	@media screen and (max-width: 600px) {
+		.mint {
+			min-width: 100px;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		.skull {
+			display: none;
+		}
 	}
 </style>

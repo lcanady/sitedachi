@@ -72,27 +72,32 @@
 		background: #00a388;
 	}
 
-	.title {
-		font-family: 'Hey Haters';
-		font-size: 38px;
-		margin-bottom: 40px;
-	}
-
-	.body {
-		font-family: 'Epilogue';
-		font-size: 20px;
-		margin-top: 0;
-	}
-
 	@media screen and (max-width: 1300px) {
+		.wrapper {
+			width: 80%;
+		}
 		.container {
+			width: 70%;
+		}
+
+		.shadow {
 			width: 70%;
 		}
 	}
 
-	@media screen and (max-width: 780px) {
+	@media screen and (max-width: 760px) {
+		.wrapper {
+			width: 100%;
+		}
 		.container {
-			width: 90%;
+			border-radius: 0;
+			width: 100%;
+			padding: 0px;
+		}
+		.shadow {
+			width: 100%;
+			border-radius: 0;
+			padding: 0;
 		}
 	}
 </style>
